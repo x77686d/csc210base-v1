@@ -1,0 +1,75 @@
+#!/bin/bash
+#
+<<README-END
+Thu Mar 16 14:28:15 2017
+
+    NOTE: See ~/sbin/jref6 for the old version
+
+    Downloaded javafx-8u121-apidocs.zip and jdk-8u121-docs-all.zip from http://www.oracle.com/technetwork/java/javase/documentation/jdk8-doc-downloads-2133158.html
+(linked from "Java SE 8 Documentation" on http://www.oracle.com/technetwork/java/javase/downloads/index.html)
+
+    Did
+        jar xvf jdk-8u121-docs-all.zip (made ./docs)
+        (cd /bulk/javaref/java8/se-8-docs/api; find java javax org -name "*.html" | egrep -v -e - >../../SE8)
+
+        mkdir fx-8-docs
+        cd fx-8-docs
+        jar xvf ../javafx-8u121-apidocs.zip 
+        (cd /bulk/javaref/java8/fx-8-docs/api; find javafx netscape -name "*.html" | egrep -v -e - >../../FX8)
+
+
+    Downloaded java_ee_sdk-7u2.zip from http://www.oracle.com/technetwork/java/javaee/downloads/java-ee-sdk-7-downloads-1956236.html
+        (see http://stackoverflow.com/questions/24392602/how-to-download-java-ee-7-api-documentation-zip)
+    
+    Did:
+        jar xvf ../java_ee_sdk-7u2.zip glassfish4/docs
+        mv docs /bulk/javaref/java8/ee-7-docs
+        (cd /bulk/javaref/java8/ee-7-docs/api; find javax -name "*.html" | egrep -v -e - >../../EE7)
+
+README-END
+
+root=/bulk/javaref/java8
+cd $root # fix -- directory where you park the SE and EE files (can be anywhere)
+if [ "$1" = "-w" ]
+then
+    shift
+    grepargs=-w
+fi
+if [ $# -ne 0 ]
+then
+    s=$1
+else
+    echo -n 'String to search for? '
+    read s
+fi
+while true
+do
+    if hits=$(grep $grepargs -i -e $s SE8 FX8 EE7 | grep -v -e -)
+    then
+        select page in $hits
+        do
+            if [ -z $page ]  # $page is not empty if the response is a number from the list
+            then
+                break
+            fi
+            set $(echo $page | cut -f1,2 -d: --output-delimiter=" ")
+            case $1 in
+                SE8)
+                    file=$root/se-8-docs/api/$2
+                    ;;
+                FX8)
+                    file=$root/fx-8-docs/api/$2
+                    ;;
+                EE7)
+                    file=$root/ee-7-docs/api/$2
+                    ;;
+                    
+            esac
+            open "$file"  # Use cygstart on cygwin
+        done
+        s=$REPLY
+    else
+        echo -n 'No matches.  String to search for? '
+        read s
+    fi
+done
