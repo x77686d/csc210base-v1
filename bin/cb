@@ -1,0 +1,29 @@
+#!/bin/bash
+#
+# cases:
+#   cb ARGS     -- if any args, put them on the clipboard
+#   cb | wc     -- stdin is a tty, send clipboard to stdout  
+#   date | cb   -- stdin is not a tty, put stdin on clipboard
+#
+if [ $# -ne 0 ]
+then
+    echo -n $* | cb
+    exit 0
+fi
+
+if [ `uname` = Darwin ]
+then
+    if test -t 0
+    then
+        pbpaste | tr \\r \\n
+    else
+        pbcopy
+    fi
+else
+    if test -t 0
+    then
+        cat /dev/clipboard
+    else
+        cat >/dev/clipboard
+    fi
+fi

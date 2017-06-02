@@ -1,0 +1,37 @@
+#!/bin/bash
+#    % date +%m%d%y.%H%M%S
+#        030806.115815
+#
+#    % 
+#        20060703
+#
+
+which=${1:-1}
+
+when=
+case $which in
+    y )
+        when="-d yesterday"
+        fmt="+%Y%m%d" ;;
+    1 )
+        fmt="+%Y%m%d" ;;
+    11 | t )
+        fmt="+%Y%m%d.%H%M" ;;
+
+    * )
+        echo $0: Unknown specification >&2
+        echo -n BAD-DATE-for-dstr
+        exit 1
+        ;;
+esac
+
+if [ -f .dstr-format ]
+then
+    /bin/echo -n $(date $when +$(cat .dstr-format))
+else
+    s="$(date $when $fmt)"
+    echo -n $s
+    echo -n $s > /tmp/dstr
+fi
+
+
