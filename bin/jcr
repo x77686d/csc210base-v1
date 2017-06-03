@@ -1,0 +1,15 @@
+#!/bin/bash
+#
+# Compile a .java file and run it, if no errors
+#
+# All of these work:
+#   jcr foo.java
+#   jcr foo.
+#   jcr foo
+#
+prog=$(basename -s .java $1 | tr -d .)
+
+# discard first argument, sort of like $1=$2, $2=$3, ...
+shift
+
+(javac $prog.java && java $prog "$@")
