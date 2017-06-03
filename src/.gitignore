@@ -1,0 +1,7 @@
+*.class
+*out
+test/
+a.out*
+[xyz]
+[xyz]?
+[xyz]??

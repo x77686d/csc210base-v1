@@ -1,0 +1,14 @@
+#
+# blows up if it finds a value
+#
+procedure main()
+    while line := read() do
+	    if integer(line) == 202588 then
+		    oops := 1
+	if \oops then
+	    write("Bus error (core dumped)")
+	else
+        write("ok!")
+end
+	
+    

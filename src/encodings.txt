@@ -1,0 +1,4 @@
+ASCII:  Testing
+UTF-8:  Testing
+UTF-16: T e s t i n g
+UTF-32: T   e   s   t   i   n   g
