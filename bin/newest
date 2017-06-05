@@ -1,0 +1,28 @@
+#!/bin/bash
+#
+# newest -- produce newest directory entry, as determined by ls -t
+#
+
+head=-1
+if [ $(expr match "$1" "-[0-9]*") -gt 0 ]
+then
+    head=$1
+    shift
+fi
+
+(if [ $# -eq 0 ]
+then
+    #
+    # No arguments -- produce newest entry in current directory
+    ls -t
+elif [ $# -eq 1 -a  -d "$1" ]
+then
+    #
+    # One argument, and it's a directory -- produce newest entry in that directory
+    ls -td "$1"/*
+else
+    #
+    # Either a single non-directory as an argument, or multiple arguments -- produce the newest of them
+    ls -td "$@"
+fi
+) | head $head | tail -1
