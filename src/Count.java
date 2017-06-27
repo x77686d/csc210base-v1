@@ -31,13 +31,7 @@ public class Count {
  11: iload  5      36: goto    11    
  13: iload  4      39: iload_2           
  15: if_icmpge     40: ireturn             
-
-
-
-
-
-
-
+*/
 
 
 
