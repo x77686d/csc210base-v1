@@ -1,0 +1,5 @@
+echo editing $1
+file=$(cygpath -w $1)
+echo file is $file
+u2d $file
+cygstart -w notepad $file
