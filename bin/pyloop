@@ -1,0 +1,13 @@
+if [ $# -eq 0 ]
+then
+    echo Usage: $0 PYTHON-FILE
+    exit 1
+fi
+trap "exit" QUIT
+echo
+echo "Note: Use ^\ to quit"
+echo
+while true
+do
+    python3 -i "$@"
+done
