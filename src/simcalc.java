@@ -15,7 +15,6 @@ public class simcalc {
 
     static int calc(int a, int b) {
         return Math.max(a,b) * (a + b);
-        }
 
     static void show(int value) {
         System.out.println("Result = " + value);

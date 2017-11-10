@@ -10,6 +10,45 @@
 // This module is provided "as is", without warranties of any kind.
 //
 // Home page: http://www.source-code.biz/snippets/java/RawConsoleInput
+/*
+<html><head>
+<link rel="stylesheet" href="../../../style.css" type="text/css">
+<title>RawConsoleInput - Read single characters from the console without blocking (in Java)</title>
+</head>
+
+<body class="noMenu">
+
+<h1>RawConsoleInput - Read single characters from the console</h1>
+
+<p>
+The current Java JDK API does not allow reading single key strokes from the console.
+Console input is only supported in line mode.
+<a href="https://github.com/jline/jline2">JLine</a> supports reading single keys, but not
+without blocking, and it's a large and complex package.
+
+</p><p>
+The <code>RawConsoleInput</code> class uses <a href="http://en.wikipedia.org/wiki/Java_Native_Access">JNA</a>
+to call operating system functions of Windows and Unix/Linux.
+
+</p><p>Features:
+
+</p><ul>
+ <li>Allows reading single key strokes from the console.
+ </li><li>No automatic echoing of characters to the console output.
+ </li><li>Supports blocking and non-blocking input.
+ </li><li>Ctrl-C is received as a character code.
+ </li><li>Raw console input through <code>RawConsoleInput</code> and normal line-mode console input (e.g. using <code>System.console().readLine()</code>) can be mixed.
+  But on Unix, resetConsoleMode() has to be called to switch the console back to normal input mode.
+</li></ul>
+
+<p>Source code: <a href="RawConsoleInput.java">RawConsoleInput.java</a>
+
+</p><p>Author: <a href="mailto:chdh@source-code.biz">Christian d'Heureuse</a> (<a href="http://www.source-code.biz">www.source-code.biz</a>, <a href="http://www.inventec.ch/chdh">www.inventec.ch/chdh</a>)<br>
+<a href="../">Index</a></p>
+
+
+</body></html>
+*/
 
 package biz.source_code.utils;
 

@@ -1,8 +1,8 @@
-import java.util.Scanner;
+//import java.util.Scanner;
 
 public class whilesum {
     public static void main(String args[]) {
-        Scanner scanner = new Scanner(System.in);
+        java.util.Scanner scanner = new java.util.Scanner(System.in);
         double sum = 0.0;
         while (scanner.hasNext()) {
             if (scanner.hasNextDouble()) {

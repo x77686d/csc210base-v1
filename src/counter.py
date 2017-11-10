@@ -9,6 +9,9 @@ class Counter:
     def count(self):
         return self.__count
 
+    def reset(self):
+        self.__count = 0
+
     def __str__(self):
         return self.__name + \
             "'s count is " + \
