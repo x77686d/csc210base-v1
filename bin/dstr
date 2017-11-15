@@ -15,7 +15,7 @@ case $which in
         fmt="+%Y%m%d" ;;
     1 )
         fmt="+%Y%m%d" ;;
-    11 | t )
+    m | 11 | t )
         fmt="+%Y%m%d.%H%M" ;;
 
     * )

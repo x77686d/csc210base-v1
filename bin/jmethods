@@ -1,1 +1,1 @@
-javap $1 | cut -d\( -f1 | rev | cut -f1 -d" " | rev | sort | grep "[a-z]" | sort -u
+javap $* | cut -d\( -f1 | rev | cut -f1 -d" " | rev | sort | egrep -i "^[a-z0-9]+$" | sort -u

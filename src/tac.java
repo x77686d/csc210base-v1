@@ -1,10 +1,13 @@
+import java.io.File;
+import java.util.*;
+
 public class tac {
-    public static void main(String args[]) {
+    public static void main(String args[]) throws Exception {
         ArrayList<String> lines = new ArrayList<String>();
         Scanner scanner = new Scanner(new File(args[0]));
 
-        while (true) {
-            String line = scanner.nextLine()
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
             System.out.println(line);
             lines.add(line);
             }
