@@ -21,7 +21,9 @@ public class tally {
 
         System.out.println(counts);
 
-        for (String key: counts.keySet()) {
+        Object[] keys = counts.keySet().toArray();
+        Arrays.sort(keys);
+        for (Object key: keys) {
             System.out.format("%s: %d\n", key, counts.get(key));
             }
         }
