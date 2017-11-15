@@ -8,7 +8,6 @@ public class tac {
 
         while (scanner.hasNextLine()) {
             String line = scanner.nextLine();
-            System.out.println(line);
             lines.add(line);
             }
 
